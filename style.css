@@ -82,6 +82,17 @@ body {
     width: 40%;
     height: 100%;
     display:flex;
+    justify-content: space-between;
+    align-items: center;
+
+}
+.block-bataille div {
+    width: 90px;
+    height: 120px;
+    display:flex;
+    margin:3%;
+    background-color: beige;
+
 }
 .block-j2{
     width: 30%;
