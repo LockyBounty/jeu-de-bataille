@@ -1,0 +1,137 @@
+@font-face {
+    font-family: "Chakra";
+    src: url("fonts/ChakraPetch-Medium.ttf") format('truetype');
+    src: url("fonts/ChakraPetch-Bold.ttf") format('truetype');
+}
+
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    width: 100vw;
+    height: 100vh;
+    background-color: rgb(241, 241, 95);
+
+}
+
+body {
+    background-color: green;
+    width: 100%;
+    height: 100%;
+}
+
+/*--------------------PREMIERE PARTIE-------------------------*/
+.haut{
+    min-width: 90%;
+    height: 10vh;
+    background-color: aliceblue;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: Chakra;
+    color: rgb(126, 11, 172);
+    text-shadow: 2px 2px rgba(214, 147, 211, 0.658);
+
+}
+/*--------------------DEUXIEME PARTIE-------------------------*/
+
+.milieu{
+    min-width: 90%;
+    height: 70vh;
+    background-color: rgb(18, 112, 194);
+    display: flex;
+    
+}
+.block-j1{
+    width: 30%;
+    height: 100%;
+    background-color: green;
+    display:flex;
+    flex-direction: column;
+}
+.name-j1{
+    width: 100%;
+    height: 10%;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    font-family: Chakra;
+}
+.container-j1{
+    width: 100%;
+    height: 90%;
+    background-color: orange;
+    display:flex;
+    justify-content: space-evenly;
+    align-content: center;
+    flex-wrap: wrap;
+}
+.container-j1 div {
+    margin:1%;
+    width: 60px;
+    height: 80px;
+    display: flex;
+    background-color: beige;
+    align-items: center;
+    justify-content: center;
+}
+.block-bataille{
+    width: 40%;
+    height: 100%;
+    display:flex;
+}
+.block-j2{
+    width: 30%;
+    height: 100%;
+    background-color: green;
+    display:flex;
+    flex-direction: column;
+}
+.name-j2{
+    width: 100%;
+    height: 10%;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    font-family: Chakra;
+}
+.container-j2{
+    width: 100%;
+    height: 90%;
+    background-color: orange;
+    display:flex;
+    justify-content: space-evenly;
+    align-content: center;
+    flex-wrap: wrap;
+}
+.container-j2 div {
+    margin:1%;
+    width: 60px;
+    height: 80px;
+    display: flex;
+    background-color: beige;
+    align-items: center;
+    justify-content: center;
+}
+
+/*--------------------TROISIEME PARTIE-------------------------*/
+.bas{
+    min-width: 90%;
+    height: 20vh;
+    background-color: aliceblue;
+    display:flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.bas div {
+    width: 140px;
+    height: 90px;
+    background-color:yellow;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: Chakra;
+}
