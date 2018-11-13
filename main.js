@@ -6,13 +6,16 @@ tabCartes2 = ["images/PNG/ace_of_spades.png", "images/PNG/2_of_spades.png", "ima
 cartesJ1 = document.querySelector(".container-j1").getElementsByTagName("div");
 cartesJ2 = document.querySelector(".container-j2").getElementsByTagName("div");
 
-for (i = 0; i < 5; i++) {
-    let rand = tabCartes1[Math.floor((Math.random() * (tabCartes1.length) - 1) + 1)];
-    console.log(rand);
-    let rand2 = tabCartes2[Math.floor((Math.random() * (tabCartes2.length) - 1) + 1)];
+let rand = [];
+let rand2 = [];
     
-    cartesJ1[i].innerHTML = `<img src=${rand} alt="unavailable" / >`;
-    cartesJ2[i].innerHTML = `<img src=${rand2} alt="unavailable" / >`;
+
+for (i = 0; i < 5; i++) {
+    rand[i] = tabCartes1[Math.floor((Math.random() * (tabCartes1.length) - 1) + 1)];
+    rand2[i] = tabCartes2[Math.floor((Math.random() * (tabCartes2.length) - 1) + 1)];
+    
+    cartesJ1[i].innerHTML = `<img src=${rand[i]} alt="unavailable" / >`;
+    cartesJ2[i].innerHTML = `<img src=${rand2[i]} alt="unavailable" / >`;
 
 
 }
