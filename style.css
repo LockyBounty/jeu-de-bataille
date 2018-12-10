@@ -110,13 +110,14 @@ body {
     max-width:100%;
     height: 100%;
 }
-#combat {
-    width:8pc;
+#combat,#distrib1,#melange1,#reset1 {
+    width:6pc;
     height: 3pc;
     position: relative;
     bottom:10px;
 
 }
+
 .block-j2{
     width: 30%;
     height: 100%;
