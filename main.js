@@ -13,7 +13,9 @@ cartesJ2 = document.querySelector(".container-j2").getElementsByTagName("div");
 scoreA = document.querySelector("#score1-input");
 scoreB = document.querySelector("#score2-input");
 
-let rand = [];
+
+
+/* let rand = [];
 let rand2 = [];
     
 
@@ -37,9 +39,77 @@ let attribution1 = () => {
 let attribution2 = () => {
     setCarteJ2.src = `${selectCarteJ2.value}`;
     this;
+} */
+
+/* selectCarteJ1.addEventListener('click', attribution1);
+selectCarteJ2.addEventListener('click', attribution2); */
+
+
+let deck10 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+let deckj1 = [];
+let deckj2 = [];
+
+let deckShuffle = [];
+
+let melange = () => {
+    // Solution :
+    // 1.We put each element in the array in an object, and give it a random sort key
+    // 2.We sort using the random key
+    // 3.We unmap to get the original objects 
+
+    deckShuffle = deck10
+        .map((a) => ({
+            sort: Math.random(),
+            value: a
+        }))
+        .sort((a, b) => a.sort - b.sort)
+        .map((a) => a.value)
+
+    /*  console.log(deckShuffle); */
+    return deckShuffle;
 }
 
-selectCarteJ1.addEventListener('click', attribution1);
-selectCarteJ2.addEventListener('click', attribution2);
+let distribution = () => {
+    i = deckShuffle.length-1;
+    while (i > 0) {
+        if (i>=0){
+        deckj1.push(deckShuffle[i]);
+        i--;
+        }
+        /* console.log(i); */
+        if (i>=0){
+        deckj2.push(deckShuffle[i]);
+        i--;}
+        /* console.log(i); */
+    }
+}
+console.log(deckj1);
+console.log(deckj2);
+let fight = document.getElementById("combat");
+pointsJ1 =0;
+pointsJ2 =0;
+let clickBattle = () => {
+    for (i=0; i<deckj1.length;i++){
+        if (deckj1[i] > deckj2[i]){
+        pointsJ1++;
+        
+        } else if(deckj1[i] < deckj2[i]){
+            pointsJ2++;
+        } else if(deckj1[i] === deckj2[i]){
+            pointsJ1+=0;
+            pointsJ2+=0;
+        }
+    }
+    return console.log(pointsJ1),
+    console.log(pointsJ2);
+}
+
+/* console.log(pointsJ1);
+console.log(pointsJ2); */
 
 
+
+melange();
+distribution();
+fight.addEventListener("click", clickBattle);
