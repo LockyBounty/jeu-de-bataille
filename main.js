@@ -7,13 +7,15 @@ setCarteJ1 = document.querySelector("#carte-img-j1");
 selectCarteJ2 = document.querySelector("#cardP2-1");
 setCarteJ2 = document.querySelector("#carte-img-j2");
 
-cartesJ1 = document.querySelector(".container-j1").querySelectorAll("div");
-cartesJ2 = document.querySelector(".container-j2").getElementsByTagName("div");
+let cartesJ1 = document.querySelector(".container-j1");
+let cartesJ2 = document.querySelector(".container-j2").getElementsByTagName("div");
 
 scoreA = document.querySelector(".score1-input");
 scoreB = document.querySelector(".score2-input");
 
-    
+let defaultImgCenter = "images/Mechanic+Deck.gif";
+
+
 let deck10 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
 let deckj1 = [];
@@ -47,64 +49,71 @@ let distribution = () => {
 
         if (i >= 0) {
             deckj1.push(deckShuffle[i]);
-            document.querySelector(`#cardP1-${deckj1.length-1}`).innerHTML = `<img src="${tabCartes1[deckShuffle[i]-1]}">`;
+            document.querySelector(`#cardP1-${deckj1.length-1}`).innerHTML = `<img src="${tabCartes1[deckShuffle[i]-1]}" name="${deckShuffle[i]}">`;
+            //<--tabCartes1[deckShuffle[i]-1]} pour lier le numero du tableau & a l'image du tablau 2
             i--;
         }
         /* console.log(i); */
         if (i >= 0) {
             deckj2.push(deckShuffle[i]);
-            document.querySelector(`#cardP2-${deckj2.length-1}`).innerHTML = `<img src="${tabCartes2[deckShuffle[i]-1]}">`;
+            document.querySelector(`#cardP2-${deckj2.length-1}`).innerHTML = `<img src="${tabCartes2[deckShuffle[i]-1]}" value="${deckShuffle[i]}">`;
             i--;
         }
         /* console.log(i); */
     }
-    
+
 }
 console.log(deckj1);
 console.log(deckj2);
 let fight = document.getElementById("combat");
 let distrib = document.querySelector("#distrib1");
 let shuffling = document.querySelector("#melange1");
-let reseter= document.querySelector("#reset1");
+let reseter = document.querySelector("#reset1");
 pointsJ1 = 0;
 pointsJ2 = 0;
 
 
-
+let counterClickBattle = 0;
 let clickBattle = () => {
+    luck1.removeAttribute("src"); /*Enleve le src de l'event.target */
+    // console.log(luck1);
+    if (counterClickBattle === 0) {
+        for (i = 0; i < deckj1.length; i++) {
 
-    for (i = 0; i < deckj1.length; i++) {
+            console.log(`${deckj1[i]} contre ${deckj2[i]}  `);
 
-        console.log(`${deckj1[i]} contre ${deckj2[i]}  `);
+            if (deckj1[i] > deckj2[i]) {
+                pointsJ1++;
 
-        if (deckj1[i] > deckj2[i]) {
-            pointsJ1++;
-
-        } else if (deckj1[i] < deckj2[i]) {
-            pointsJ2++;
-        } else if (deckj1[i] === deckj2[i]) {
-            pointsJ1 += 0;
-            pointsJ2 += 0;
+            } else if (deckj1[i] < deckj2[i]) {
+                pointsJ2++;
+            } else if (deckj1[i] === deckj2[i]) {
+                pointsJ1 += 0;
+                pointsJ2 += 0;
+            }
         }
-    }
 
-    scoreA.innerHTML = pointsJ1;
-    scoreB.innerHTML = pointsJ2;
-    // console.log(`Joueur 1 : ${ pointsJ1} points \nJoueur 2 : ${pointsJ2} points`);
+        scoreA.innerHTML = pointsJ1;
+        scoreB.innerHTML = pointsJ2;
+        // console.log(`Joueur 1 : ${ pointsJ1} points \nJoueur 2 : ${pointsJ2} points`);
+        counterClickBattle++;
+    }
 }
 
 
-let resetAll =()=>{
+let resetAll = () => {
     pointsJ1 = 0;
     pointsJ2 = 0;
-       
+    counterClickBattle = 0;
+
     scoreA.innerHTML = pointsJ1;
     scoreB.innerHTML = pointsJ2;
-    for (i=deckj1.length-1; i>=0; i--){
+    for (i = deckj1.length - 1; i >= 0; i--) {
         document.querySelector(`#cardP1-${i}`).innerHTML = ` `;
         document.querySelector(`#cardP2-${i}`).innerHTML = ` `;
         // console.log(i);
-
+        setCarteJ1.src = `${defaultImgCenter}`; /*Remet l'image original */
+        setCarteJ2.src = `${defaultImgCenter}`; /*Remet l'image original */
     }
 }
 
@@ -115,24 +124,25 @@ let resetAll =()=>{
 fight.addEventListener("click", clickBattle);
 distrib.addEventListener("click", distribution);
 shuffling.addEventListener("click", melange);
-reseter.addEventListener("click", resetAll); 
+reseter.addEventListener("click", resetAll);
 
-/////////////////////////////////:TEST////////////////////////////////////
-// Make a list
-var ul = document.createElement('ul');
-document.body.appendChild(ul);
+// function trigger1(event) { 
+//     let luck = event.target;
+//     console.log( "Triggered by a " + luck.tagName + " element"+ "\nMacron, enculé !");
+// }
+let luck1;
+function triggerJoueur(event) {
+    //<-- on travaille avec "event" (mais ça pourrait etre autre chose)
+    luck1 = event.target;
+    console.log(event.target.src);
+    console.log(event.target.name);
+    let temp = event.target.src;
 
-var li1 = document.createElement('li');
-var li2 = document.createElement('li');
-ul.appendChild(li1);
-ul.appendChild(li2);
+    if (temp !== undefined) {
+        setCarteJ1.src = `${temp}`; 
+        //<--- Va prendre le src de l'image où on a cliqué et la place dans l'endroit voulu
+    }
 
-function hide(e){
-  // e.target refers to the clicked <li> element
-  // This is different than e.currentTarget which would refer to the parent <ul> in this context
-  e.target.style.visibility = 'hidden';
 }
 
-// Attach the listener to the list
-// It will fire when each <li> is clicked
-ul.addEventListener('click', hide, false);
+cartesJ1.addEventListener("click", triggerJoueur);
